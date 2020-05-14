@@ -98,34 +98,40 @@ public class GrafoCanvas extends JPanel implements MouseListener, MouseMotionLis
                   if(p1 == null)  {
                       p1 = new Point(nodo.getX(), nodo.getY());
                       n1 = nodo;
-                  }else{
-                      p2 = new Point(nodo.getX(), nodo.getY());
-                      n2 = nodo;
-                      int peso = 1;
-                      Boolean numeroFueValido = false;
-                      do {
-                          try {
-                              peso = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el peso del enlace"));
-                              if(peso >= 0 ) {
-                                  numeroFueValido = true;
+                  }else {
+                      if (!(p1.getX() == nodo.getX() && p1.getY() == nodo.getY())) {
+                          p2 = new Point(nodo.getX(), nodo.getY());
+                          n2 = nodo;
+                          int peso = 1;
+                          Boolean numeroFueValido = false;
+                          do {
+                              try {
+                                  peso = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el peso del enlace"));
+                                  if (peso >= 0) {
+                                      numeroFueValido = true;
+                                  }
+                              } catch (NumberFormatException e) {
+
+                                  JOptionPane.showMessageDialog(null, "Input es invalido. Porfavor escriba unicamente numeros enteros mayores a 0.");
                               }
-                          } catch (NumberFormatException e) {
+                          } while (!numeroFueValido);
+                          this.vectorEnlaces.add(new Enlace(p1.x, p1.y, p2.x, p2.y, peso));
+                          this.edges.add(new Edge(n1, n2, peso));
 
-                              JOptionPane.showMessageDialog(null, "Input es invalido. Porfavor escriba unicamente numeros enteros mayores a 0.");
+
+                          if (!listaNodosEnArbol.contains(n1)) {
+                              listaNodosEnArbol.add(n1);
+                              System.out.println("nodo agragado: " + n1.getNombre());
                           }
-                      }while(!numeroFueValido);
-                      this.vectorEnlaces.add(new Enlace(p1.x,p1.y, p2.x,p2.y, peso));
-                      this.edges.add(new Edge(n1, n2, peso));
-                      if(!listaNodosEnArbol.contains(n1)){
-                          listaNodosEnArbol.add(n1);
-                      }
-                      if(!listaNodosEnArbol.contains(n2)){
-                          listaNodosEnArbol.add(n2);
-                      }
-                      repaint();
-                      p1 = null;
-                      p2 = null;
+                          if (!listaNodosEnArbol.contains(n2)) {
+                              listaNodosEnArbol.add(n2);
+                              System.out.println(n2.getNombre());
+                          }
+                          repaint();
+                          p1 = null;
+                          p2 = null;
 
+                      }
                   }
                 }
             }

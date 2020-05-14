@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GrafoMain {
     public static void main() {
@@ -16,14 +18,18 @@ public class GrafoMain {
         Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
 
         menu.setSize(600,600);
-        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menu.pack();
 
-
-
+        ventana.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                // call terminate
+                menu.dispatchEvent(new WindowEvent(menu, WindowEvent.WINDOW_CLOSING));
+            }
+        });
 
         ventana.setSize(600,600);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.pack();
 
         int x = (int) rect.getMaxX()/2 - ventana.getWidth()/2;
@@ -32,6 +38,9 @@ public class GrafoMain {
         ventana.setVisible(true);
         menu.setLocation(x + ventana.getWidth(), y);
         menu.setVisible(true);
+
+
+
     }
 
 

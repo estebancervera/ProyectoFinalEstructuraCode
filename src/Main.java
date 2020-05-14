@@ -13,7 +13,7 @@ public class Main {
         JFrame frame = new JFrame("UI");
         frame.setContentPane(ui.panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setSize(new Dimension(600,300));
+        frame.setSize(new Dimension(600,400));
 
 
         int x = (int) rect.getMaxX()/2 - frame.getWidth()/2;

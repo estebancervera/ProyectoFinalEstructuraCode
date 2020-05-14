@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Objects;
 
 public class NodoGrafo {
 
@@ -40,4 +41,19 @@ public class NodoGrafo {
     public void setY(int y) {
         this.y = y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof NodoGrafo)) return false;
+        NodoGrafo nodoGrafo = (NodoGrafo) o;
+        return getNombre() == nodoGrafo.getNombre();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNombre(), getX(), getY());
+    }
+
+
 }

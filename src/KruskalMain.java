@@ -33,33 +33,39 @@ public class KruskalMain {
         });
         System.out.println("numbeOfNodes: " + numberOfNodes);
         //	STEP 2-3:
+        String resultado = "";
+        try {
+            do {
+                //	we brake the edge into the three integers they describe it
+                a = edges.get(mst_ni).nodo1.getNombre();
+                b = edges.get(mst_ni).nodo2.getNombre();
+                w = edges.get(mst_ni).peso;
 
-        while( ( mst_edges < numberOfNodes - 1)  ){
-            //	we brake the edge into the three integers they describe it
-            a = edges.get(mst_ni).nodo1.getNombre();
-            b = edges.get(mst_ni).nodo2.getNombre();
-            w = edges.get(mst_ni).peso;
-
-            //	we check if the edge is ok to be included in the MST
-            //	if a and b are in different trees (if they are on the same we will create a cycle)
-            System.out.println(mst.find(a) != mst.find(b));
-            if( mst.find(a) != mst.find(b) ) {
-                //	we unite the two trees the edge connects
-                mst.unite(a,b);
-                //	we add the weight of the edge
-                mst_weight += w;
-                //	we print the edge and count it
-                System.out.println(a + " " + b + " " + w);
-                mst_edges++;
-            }
-            //	increase the index of the edge we will be chacking
-            mst_ni++;
-            System.out.println("count : "+  mst_ni);
+                //	we check if the edge is ok to be included in the MST
+                //	if a and b are in different trees (if they are on the same we will create a cycle)
+                System.out.println(mst.find(a) != mst.find(b));
+                if (mst.find(a) != mst.find(b)) {
+                    //	we unite the two trees the edge connects
+                    mst.unite(a, b);
+                    //	we add the weight of the edge
+                    mst_weight += w;
+                    //	we print the edge and count it
+                    resultado += "\n" + a + " - " + b + " |  peso : " + w;
+                    System.out.println(a + " " + b + " " + w);
+                    mst_edges++;
+                    System.out.println(" edges agregados " + mst_edges);
+                }
+                //	increase the index of the edge we will be chacking
+                mst_ni++;
+                // System.out.println("count : "+  mst_ni);
+            } while ((mst_edges < numberOfNodes - 1));
+            JOptionPane.showMessageDialog(null, "El grafo del " + resultado + "\nWeight of the MST is " + mst_weight);
+        }catch(IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "El grafo es invalido. Porfavor no deje pares de nodos flotando o no conectados ");
         }
         //	Presenting the WEIGHT
-        JOptionPane.showMessageDialog(null, "Weight of the MST is " + mst_weight);
 
-        //	THE END
+
 
     }
 
