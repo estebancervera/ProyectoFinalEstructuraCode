@@ -33,7 +33,7 @@ public class RandomNumber {
                 }
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "El input que ingreso no es valido.");
             }
         }while(!creado);
 

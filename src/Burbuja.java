@@ -40,6 +40,9 @@ public class Burbuja {
                         Integer[] ordenado = Burbuja.burbuja(Arrays.copyOf(lista.toArray(),lista.toArray().length, Integer[].class));
                         JOptionPane.showMessageDialog(null, Arrays.toString(ordenado) );
                         break;
+                    case 4:
+                        JOptionPane.showMessageDialog(null, "Ejercicio Finalizado" );
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion Incorrecta ","Error", JOptionPane.INFORMATION_MESSAGE);
                 }

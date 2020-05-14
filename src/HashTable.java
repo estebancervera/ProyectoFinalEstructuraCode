@@ -7,64 +7,80 @@ public class HashTable {
 
     static void main(){
 
-        int opcion = 0, elemento, size, target = 0;
+        int opcion = 0, elemento, size;
         boolean creado = false;
         int[] array = new int[0];;
+        int target = 0;
+        boolean cancelar = false;
 
         do {
             try {
-                JOptionPane.showMessageDialog(null, "Ingrese un DOS o mas numeros y un numero deseado, y el codigo regresara los indices de los 2 numeros, si es posible, que suman el numero deseado." );
-                target = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el numero deseado", "Agregar numero deseado", JOptionPane.QUESTION_MESSAGE));
+                JOptionPane.showMessageDialog(null, "Ingrese 2 o mas numeros y 1 numero deseado, y el codigo regresara los indices (posicion) de los 2 numeros, si es posible, que suman el numero deseado." );
+                Object targetO = (JOptionPane.showInputDialog(null, "Ingresa el numero deseado", "Agregar numero deseado", JOptionPane.QUESTION_MESSAGE));
 
-                creado = true;
+
+                if (targetO == null){
+                    cancelar = true;
+                    creado = false;
+                }else{
+                    target = Integer.parseInt(targetO.toString());
+                    creado = true;
+                }
+
 
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "El input es invalido");
             }
-        }while(!creado);
+        }while(!creado && !cancelar);
+
+        if (creado) {
+
+            do {
+                try {
+                    Object opcionO = (JOptionPane.showInputDialog(null, "1. Agregar Numero\n" +
+                            "2. Mostrar\n" +
+                            "3. Realizar Busqueda \n" +
+                            "4. Salir\n" +
+                            "Elige una Opcion", "Hash Table", JOptionPane.QUESTION_MESSAGE));
+
+                    if (opcionO == null) {
+                        opcion = 4;
+                    } else {
+                        opcion = Integer.parseInt(opcionO.toString());
+                    }
+
+                    switch (opcion) {
+                        case 1:
+                            elemento = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa un numero", "Agregar Numero", JOptionPane.QUESTION_MESSAGE));
+                            array = addX(array, elemento);
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(null, Arrays.toString(array));
+
+                            break;
+                        case 3:
+                            try {
+                                int[] res = twoSum(array, target);
+                                JOptionPane.showMessageDialog(null,
+                                        "Los valores estan en las posiciones: " + res[0] + ", " + res[1] +
+                                                "\n y los valores son: " + array[res[0]] + ", " + array[res[1]]);
+                            } catch (IllegalArgumentException e) {
+                                JOptionPane.showMessageDialog(null, "El input es invalido");
+                            }
 
 
+                            break;
 
-        do {
-            try {
-                opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "1. Agregar Numero\n" +
-                        "2. Mostrar\n" +
-                        "3. Realizar Busqueda \n" +
-                        "4. Salir\n" +
-                        "Elige una Opcion", "Hash Table", JOptionPane.QUESTION_MESSAGE));
-
-
-                switch (opcion) {
-                    case 1:
-                        elemento = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa un numero", "Agregar Numero", JOptionPane.QUESTION_MESSAGE));
-                        array = addX( array,elemento);
-                        break;
-                    case 2:
-                        JOptionPane.showMessageDialog(null, Arrays.toString(array) );
-
-                        break;
-                    case 3:
-                        try {
-                           int[] res =  twoSum(array, target);
-                            JOptionPane.showMessageDialog(null,
-                                    "Los valores estan en las posiciones: " + res[0] + ", " + res[1] +
-                                    "\n y los valores son: " + array[res[0]] + ", " + array[res[1]] );
-                        }catch(IllegalArgumentException e){
-                            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-                        }
-
-
-                        break;
-
-                    case 4:
-                        JOptionPane.showMessageDialog(null, "Ejercicio Finalizado" );
-                        break;
+                        case 4:
+                            JOptionPane.showMessageDialog(null, "Ejercicio Finalizado");
+                            break;
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "El input no es valido");
                 }
-            }catch( NumberFormatException e){
-                JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-            }
-        }while(opcion != 4);
+            } while (opcion != 4);
+        }
 
 
 

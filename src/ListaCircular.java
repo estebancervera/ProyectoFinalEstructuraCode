@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -30,48 +32,65 @@ public class ListaCircular {
         }
     }
 
+    public boolean estaVacia(){
+        return head == null;
+    }
 
-    public void mostrar() {
+    public String mostrar() {
         Nodo current = head;
-        if (head == null) {
-            System.out.println("La lista circular esta vacia");
+        String result = "";
+        if (estaVacia()) {
+           return "La lista esta vacia";
         } else {
-            System.out.println("Elementos en la lista: ");
+           result += "Elementos en la lista: ";
             do {
-                System.out.print(" " + current.dato);
+                result += ("\n--" + current.dato + "--");
                 current = current.next;
             } while (current != head);
-            System.out.println();
+            return result;
         }
     }
         public static void main(){
             ListaCircular lista = new ListaCircular();
-            Scanner scan = new Scanner(System.in);
 
-            System.out.println("Cuantos elementos quieres en la lista?");
-            int numero = safetyInt( scan.nextLine());
+            int opcion = 0, elemento;
 
-            lista.mostrar();
-            for (int i = 0; i < numero; i++) {
-                lista.add(i);
-            }
-            lista.mostrar();
+            do {
+                try {
+                    Object opcionO = (JOptionPane.showInputDialog(null,
+                            "1. Agregar Dato\n" +
+                            "2. Mostrar Lista\n" +
+                            "3. Salir\n" +
+                            "Elige una Opcion", "Lista", JOptionPane.QUESTION_MESSAGE));
 
+                    if (opcionO == null){
+                        opcion =3;
+                    }else{
+                        opcion = Integer.parseInt(opcionO.toString());
+                    }
+
+                    switch (opcion) {
+                        case 1:
+                            elemento = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa un numero", "Agregar Numero", JOptionPane.QUESTION_MESSAGE));
+                            lista.add(elemento);
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(null, lista.mostrar() );
+
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(null, "Ejercicio Finalizado" );
+                            break;
+
+                        default:
+                            JOptionPane.showMessageDialog(null, "Opcion Incorrecta ","Error", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }catch( NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "El input no es valido");
+                }
+            }while(opcion != 3);
 
         }
-
-    private static int safetyInt(String str) {
-        int num = 0;
-
-        try {
-            num = Integer.parseInt(str);
-        } catch (NumberFormatException var4) {
-        }
-
-        return num;
-    }
-
-
 
 
 }

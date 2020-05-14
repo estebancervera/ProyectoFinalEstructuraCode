@@ -59,6 +59,9 @@ public class Cola {
                         cola.clear();
                         JOptionPane.showMessageDialog(null, "Los elementos han sido eliminados!" );
                         break;
+                    case 7:
+                        JOptionPane.showMessageDialog(null, "Ejercicio Finalizado" );
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion Incorrecta ","Error", JOptionPane.INFORMATION_MESSAGE);
 
