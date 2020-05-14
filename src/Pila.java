@@ -55,7 +55,7 @@ public  class Pila {
                             elemento = (JOptionPane.showInputDialog(null, "Ingresa una palabra", "Agregar Palabra", JOptionPane.QUESTION_MESSAGE));
                             int x = stack.search(elemento);
                             if (x > 0){
-                                JOptionPane.showMessageDialog(null, "La palabra : " + elemento + " se enecuntra en la posicion: " + x + " .");
+                                JOptionPane.showMessageDialog(null, "La palabra : " + elemento + " se encuentra en la posicion: " + x + " .");
                             }else
                                 JOptionPane.showMessageDialog(null, "La palabra : " + elemento + "  no se enecuntra en la pila");
 

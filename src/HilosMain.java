@@ -16,7 +16,7 @@ public class HilosMain {
 //        hilo3.start();
 //        hilo4.start();
 
-        JOptionPane.showMessageDialog(null, "Abriendo el programa..." );
+        //JOptionPane.showMessageDialog(null, "Abriendo el programa..." );
 
 
 

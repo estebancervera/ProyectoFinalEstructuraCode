@@ -13,7 +13,7 @@ public class DisplayTree extends JFrame {
         panel.setPreferredSize(new Dimension(800, 800));
         scrollpane = new JScrollPane(panel);
         getContentPane().add(scrollpane, BorderLayout.CENTER);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();  // cleans up the window panel
     }
 

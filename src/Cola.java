@@ -39,21 +39,35 @@ public class Cola {
                         cola.add(elemento);
                         break;
                     case 2:
-                        JOptionPane.showMessageDialog(null, "El numero que se elimino fue: " + cola.poll() );
+                        if(!cola.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "El numero que se elimino fue: " + cola.poll());
+                        }else
+                            JOptionPane.showMessageDialog(null, "La cola esta vacia.");
                         break;
 
                     case 3:
-                        JOptionPane.showMessageDialog(null, "El numero a la cabeza de la cola es: " + cola.peek() );
+                        if(!cola.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "El numero a la cabeza de la cola es: " + cola.peek());
+                        }
+                        else
+                        JOptionPane.showMessageDialog(null, "La cola esta vacia.");
                         break;
                     case 4:
-                        String todos = "";
-                        for(int element : cola) {
-                            todos += element + ", ";
-                        }
-                        JOptionPane.showMessageDialog(null, todos );
+                        if(!cola.isEmpty()) {
+                            String todos = "";
+                            for (int element : cola) {
+                                todos += element + ", ";
+                            }
+                            JOptionPane.showMessageDialog(null, todos);
+                        }else
+                            JOptionPane.showMessageDialog(null, "La cola esta vacia.");
                         break;
                     case 5:
-                        JOptionPane.showMessageDialog(null, "El tamaño a la cabeza de la cola es: " + cola.size() );
+                        if(!cola.isEmpty()){
+                            JOptionPane.showMessageDialog(null, "El tamaño a la cabeza de la cola es: " + cola.size() );
+                        }else
+                            JOptionPane.showMessageDialog(null, "La cola esta vacia.");
+
                         break;
                     case 6:
                         cola.clear();
