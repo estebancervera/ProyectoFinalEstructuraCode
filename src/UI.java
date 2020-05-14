@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +21,7 @@ public class UI {
     private JButton button16;
     private JLabel a;
     public JPanel panel;
-    private JButton button1;
+    private JButton grafoButton;
 
     public UI() {
         arreglosButton.addActionListener(new ActionListener() {
@@ -90,5 +91,17 @@ public class UI {
                 MainArbol.main();
             }
         });
+        grafoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GrafoMain.main();
+            }
+        });
+
+
+    }
+
+    public Dimension getPreferredSize() {
+        return new Dimension(600, 600);
     }
 }
