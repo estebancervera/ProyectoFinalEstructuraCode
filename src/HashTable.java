@@ -19,8 +19,8 @@ public class HashTable {
             try {
                 JOptionPane.showMessageDialog(null, "" +
                         "PASO 1: Ingresar un numero deseado\n" +
-                        "PASO 2: Agregar muchos numeros pero que por lo menos 2, al ser sumados den el numero deseado." +
-                        "PASO 3: Realizar la busqueda,y el sistema regresara esos dos numeros que sumen \n =el numero deseado y sus posiciones dentro del arreglo" );
+                        "PASO 2: Agregar muchos numeros pero que por lo menos 2, al ser sumados den el numero deseado.\n" +
+                        "PASO 3: Realizar la busqueda,y el sistema regresara esos dos numeros que sumen \n el numero deseado y sus posiciones dentro del arreglo" );
                 Object targetO = (JOptionPane.showInputDialog(null, "Ingresa el numero deseado", "Agregar numero deseado", JOptionPane.QUESTION_MESSAGE));
 
 

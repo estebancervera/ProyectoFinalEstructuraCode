@@ -40,7 +40,7 @@ public class GrafoMain {
         menu.setVisible(true);
 
         JOptionPane.showMessageDialog(null, "" +
-                "AGREGAR NODO: CLICK IZQUIERDO" +
+                "AGREGAR NODO: CLICK IZQUIERDO\n" +
                 "AGREGAR ENLACE: CLICK DERECHO A LOS DOS NODOS");
 
 
