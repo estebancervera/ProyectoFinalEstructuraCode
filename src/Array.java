@@ -34,7 +34,11 @@ public class Array {
 
                 }else{
                     n = Integer.parseInt(obj.toString());
-                    creado = true;
+                    if (n > 0){
+                        creado = true;
+                    }else
+                        JOptionPane.showMessageDialog(null, "Ingrese un numero mayor a 0");
+
                    // array = new int[n];
                 }
 
