@@ -61,7 +61,7 @@ public class KruskalMain {
             } while ((mst_edges < numberOfNodes - 1));
             JOptionPane.showMessageDialog(null, "El grafo del " + resultado + "\nWeight of the MST is " + mst_weight);
         }catch(IndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(null, "El grafo es invalido. Porfavor no deje pares de nodos flotando o no conectados ");
+            JOptionPane.showMessageDialog(null, "El grafo es invalido. Porfavor no deje pares de nodos flotando o no conectados.\n Si el error persiste, intente de nuevo todo el ejercicio.");
         }
         //	Presenting the WEIGHT
 

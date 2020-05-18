@@ -43,6 +43,7 @@ public class GrafoCanvas extends JPanel implements MouseListener, MouseMotionLis
     private NodoGrafo nodoMover;
     private int iNodo;
 
+
     public GrafoCanvas(){
         this.vectorNodos = new Vector<>();
         this.vectorEnlaces = new Vector<>();
@@ -72,23 +73,35 @@ public class GrafoCanvas extends JPanel implements MouseListener, MouseMotionLis
     public void mouseClicked(MouseEvent mouseEvent) {
         if(mouseEvent.getButton() == MouseEvent.BUTTON1){
             int nombre = 1;
+            boolean cancelado = false;
             Boolean numeroFueValido = false;
             do {
                 try {
-                    nombre = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nombre del nodo (Numeros Enteros)"));
-                    if((nombre >= 0 && nombre < 1000) && (!listaNombres.contains(nombre))) {
-                        numeroFueValido = true;
-                        listaNombres.add(nombre);
+
+                    Object nombreO = JOptionPane.showInputDialog("Ingrese el nombre del nodo (Numeros Enteros)");
+                    if (nombreO == null){
+                        cancelado = true;
                     }else{
-                        JOptionPane.showMessageDialog(null, "Escriba unicamente numeros enteros mayores a 0 y menores a 1000 y asegurese de no repetir nombres.");
+                        cancelado = false;
+                    }
+                    if(!cancelado) {
+                        nombre = Integer.parseInt(nombreO.toString());
+                        if ((nombre >= 0 && nombre < 1000) && (!listaNombres.contains(nombre))) {
+                            numeroFueValido = true;
+                            listaNombres.add(nombre);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Escriba unicamente numeros enteros mayores a 0 y menores a 1000 y asegurese de no repetir nombres.");
+                        }
                     }
 
                 } catch (NumberFormatException e) {
 
                     JOptionPane.showMessageDialog(null, "Formato Invalido. Escriba unicamente numeros enteros.");
                 }
-            }while(!numeroFueValido);
-            this.vectorNodos.add(new NodoGrafo(mouseEvent.getX(), mouseEvent.getY(), nombre));
+            }while(!numeroFueValido && !cancelado);
+            if(!cancelado) {
+                this.vectorNodos.add(new NodoGrafo(mouseEvent.getX(), mouseEvent.getY(), nombre));
+            }
             repaint();
         }
         if(mouseEvent.getButton() == MouseEvent.BUTTON3){
@@ -103,33 +116,47 @@ public class GrafoCanvas extends JPanel implements MouseListener, MouseMotionLis
                           p2 = new Point(nodo.getX(), nodo.getY());
                           n2 = nodo;
                           int peso = 1;
-                          Boolean numeroFueValido = false;
+                          boolean numeroFueValido = false;
+                          boolean cancelado = false;
                           do {
                               try {
-                                  peso = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el peso del enlace"));
-                                  if (peso >= 0) {
-                                      numeroFueValido = true;
-                                  }
+                                 Object pesoO = JOptionPane.showInputDialog("Ingrese el peso del enlace");
+
+                                 if (pesoO == null){
+                                     cancelado = true;
+                                 }else{
+                                     cancelado = false;
+                                 }
+                                 if (!cancelado){
+                                     peso = Integer.parseInt(pesoO.toString());
+                                     if (peso >= 0) {
+                                         numeroFueValido = true;
+                                     }
+                                 }
+
                               } catch (NumberFormatException e) {
 
                                   JOptionPane.showMessageDialog(null, "Input es invalido. Porfavor escriba unicamente numeros enteros mayores a 0.");
                               }
-                          } while (!numeroFueValido);
-                          this.vectorEnlaces.add(new Enlace(p1.x, p1.y, p2.x, p2.y, peso));
-                          this.edges.add(new Edge(n1, n2, peso));
+                          } while (!numeroFueValido && !cancelado);
+                          if (!cancelado) {
+                              this.vectorEnlaces.add(new Enlace(p1.x, p1.y, p2.x, p2.y, peso));
+                              this.edges.add(new Edge(n1, n2, peso));
 
 
-                          if (!listaNodosEnArbol.contains(n1)) {
-                              listaNodosEnArbol.add(n1);
-                              System.out.println("nodo agragado: " + n1.getNombre());
+                              if (!listaNodosEnArbol.contains(n1)) {
+                                  listaNodosEnArbol.add(n1);
+                                  System.out.println("nodo agragado: " + n1.getNombre());
+                              }
+                              if (!listaNodosEnArbol.contains(n2)) {
+                                  listaNodosEnArbol.add(n2);
+                                  System.out.println(n2.getNombre());
+                              }
                           }
-                          if (!listaNodosEnArbol.contains(n2)) {
-                              listaNodosEnArbol.add(n2);
-                              System.out.println(n2.getNombre());
-                          }
-                          repaint();
-                          p1 = null;
-                          p2 = null;
+                              repaint();
+                              p1 = null;
+                              p2 = null;
+
 
                       }
                   }
