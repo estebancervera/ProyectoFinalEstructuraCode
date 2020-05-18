@@ -39,6 +39,9 @@ public class GrafoMain {
         menu.setLocation(x + ventana.getWidth(), y);
         menu.setVisible(true);
 
+        JOptionPane.showMessageDialog(null, "" +
+                "AGREGAR NODO: CLICK IZQUIERDO" +
+                "AGREGAR ENLACE: CLICK DERECHO A LOS DOS NODOS");
 
 
     }
